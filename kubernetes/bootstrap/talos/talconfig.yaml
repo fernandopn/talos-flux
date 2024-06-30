@@ -6,13 +6,13 @@ talosVersion: v1.7.5
 kubernetesVersion: v1.30.2
 
 clusterName: "home-kubernetes"
-endpoint: https://:6443
+endpoint: https://192.168.82.8:6443
 clusterPodNets:
   - "10.169.0.0/16"
 clusterSvcNets:
   - "10.196.0.0/16"
 additionalApiServerCertSans: &sans
-  - ""
+  - "192.168.82.8"
   - 127.0.0.1 # KubePrism
 additionalMachineCertSans: *sans
 
@@ -22,17 +22,22 @@ cniConfig:
 
 nodes:
   - hostname: "talostest"
-    ipAddress: ""
+    ipAddress: "192.168.82.7"
     installDisk: "/dev/vda"
     talosImageURL: factory.talos.dev/installer/c9078f9419961640c712a8bf2bb9174933dfcf1da383fd8ea2b7dc21493f8bac
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "3a:0d:21:e3:d5:42"
-        dhcp: true
+        dhcp: false
+        addresses:
+          - "192.168.82.7/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "192.168.82.1"
         mtu: 1500
         vip:
-          ip: ""
+          ip: "192.168.82.8"
 
 # Global patches
 patches:
