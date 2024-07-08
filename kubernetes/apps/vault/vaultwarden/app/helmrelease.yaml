@@ -33,7 +33,7 @@ spec:
 
 
     vaultwarden:
-      domain: https://vault.${SECRET_DOMAIN}
+      domain: https://{{ .Release.Name }}.${SECRET_DOMAIN}
       allowSignups: false
       showPasswordHint: false
       enableWebsockets: true
