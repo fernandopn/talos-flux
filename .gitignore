@@ -12,6 +12,7 @@ talosconfig
 # Private
 .private
 .bin
+ip-alloc.txt
 # Ansible
 .venv*
 # Taskfile
