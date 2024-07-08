@@ -5,14 +5,14 @@ talosVersion: v1.7.5
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.30.2
 
-clusterName: "home-kubernetes"
-endpoint: https://192.168.82.8:6443
+clusterName: "talos-flux"
+endpoint: https://10.0.6.209:6443
 clusterPodNets:
   - "10.169.0.0/16"
 clusterSvcNets:
   - "10.196.0.0/16"
 additionalApiServerCertSans: &sans
-  - "192.168.82.8"
+  - "10.0.6.209"
   - 127.0.0.1 # KubePrism
 additionalMachineCertSans: *sans
 
@@ -21,23 +21,23 @@ cniConfig:
   name: none
 
 nodes:
-  - hostname: "talostest"
-    ipAddress: "192.168.82.7"
-    installDisk: "/dev/vda"
+  - hostname: "thor"
+    ipAddress: "10.0.6.252"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/c9078f9419961640c712a8bf2bb9174933dfcf1da383fd8ea2b7dc21493f8bac
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "3a:0d:21:e3:d5:42"
+          hardwareAddr: "94:c6:91:a1:2d:3f"
         dhcp: false
         addresses:
-          - "192.168.82.7/24"
+          - "10.0.6.252/24"
         routes:
           - network: 0.0.0.0/0
-            gateway: "192.168.82.1"
+            gateway: "10.0.6.1"
         mtu: 1500
         vip:
-          ip: "192.168.82.8"
+          ip: "10.0.6.209"
 
 # Global patches
 patches:
