@@ -32,7 +32,7 @@ spec:
       TZ: "${TIMEZONE}"
 
     vaultwarden:
-      domain: https://{{ .Release.Name }}.${SECRET_DOMAIN}
+      domain: https://vault.${SECRET_DOMAIN}
       allowSignups: false
       showPasswordHint: false
       enableWebsockets: true
@@ -57,7 +57,7 @@ spec:
       className: external
       annotations:
         external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-      host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      host: &host "vault.${SECRET_DOMAIN}"
       tls:
         - secretName: vaultwarden-tls
           hosts:
