@@ -31,7 +31,6 @@ spec:
     env:
       TZ: "${TIMEZONE}"
 
-
     vaultwarden:
       domain: https://{{ .Release.Name }}.${SECRET_DOMAIN}
       allowSignups: false
