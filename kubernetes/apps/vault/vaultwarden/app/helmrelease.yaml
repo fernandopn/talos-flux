@@ -7,11 +7,12 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: app-template
-      version: 3.2.1
+      # renovate: registryUrl=https://gissilabs.github.io/charts/
+      chart: vaultwarden
+      version: 1.2.1
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: gissilabs
         namespace: flux-system
   install:
     remediation:
@@ -21,71 +22,49 @@ spec:
     remediation:
       retries: 3
   values:
-    controllers:
-      echo-server:
-        strategy: RollingUpdate
-        containers:
-          app:
-            image:
-              repository: ghcr.io/mendhak/http-https-echo
-              tag: 33
-            env:
-              HTTP_PORT: &port 8080
-              LOG_WITHOUT_NEWLINE: true
-              LOG_IGNORE_PATH: /healthz
-              PROMETHEUS_ENABLED: true
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /healthz
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 64Mi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
-        seccompProfile: { type: RuntimeDefault }
-    service:
-      app:
-        controller: echo-server
-        ports:
-          http:
-            port: *port
-    serviceMonitor:
-      app:
-        serviceName: echo-server
-        endpoints:
-          - port: http
-            scheme: http
-            path: /metrics
-            interval: 1m
-            scrapeTimeout: 10s
+    # https://github.com/gissilabs/charts/blob/master/vaultwarden/values.yaml
+    # Focus on intel for now.
+    nodeSelector:
+      kubernetes.io/arch: amd64
+    strategy: # Need to turn down then turn up (depend on one persistent volume)
+      type: Recreate
+    env:
+      TZ: "${TIMEZONE}"
+
+
+    vaultwarden:
+      domain: https://vault.${SECRET_DOMAIN}
+      allowSignups: false
+      showPasswordHint: false
+      enableWebsockets: true
+      verifySignup: true
+      allowInvitation: false
+      smtp:
+        enabled: true
+        host: ${SECRET_SMTP_SERVER}
+        from: ${SECRET_SMTP_USERNAME}
+        fromName: "Vaultwarden"
+        port: ${SECRET_SMTP_PORT}
+        user: ${SECRET_SMTP_USERNAME}
+        password: ${SECRET_SMTP_PASSWORD}
+
+      yubico:
+        enabled: true
+        clientId: ${SECRET_VAULTWARDEN_CLIENTID}
+        secretKey: ${SECRET_VAULTWARDEN_SECRETKEY}
+
     ingress:
-      app:
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-        hosts:
-          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+      enabled: true
+      className: external
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+      host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      tls:
+        - secretName: vaultwarden-tls
+          hosts:
+            - *host
+
+    persistence:
+      enabled: true
+      size: "1Gi"
+      existingClaim: vaultwarden
