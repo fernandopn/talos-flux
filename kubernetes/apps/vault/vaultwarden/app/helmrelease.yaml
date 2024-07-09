@@ -54,7 +54,6 @@ spec:
         secretKey: ${SECRET_VAULTWARDEN_SECRETKEY}
 
       admin:
-        # Enable admin portal.
         enabled: true
         token: ${SECRET_VAULTWARDEN_SECRETKEY}
 
