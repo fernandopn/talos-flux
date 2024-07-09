@@ -33,14 +33,14 @@ spec:
 
     vaultwarden:
       domain: https://vault.${SECRET_DOMAIN}
-      allowSignups: true
+      allowSignups: false
       showPasswordHint: false
       enableWebsockets: true
       verifySignup: true
       allowInvitation: false
 
       smtp:
-        enabled: false
+        enabled: true
         host: ${SECRET_SMTP_SERVER}
         from: ${SECRET_SMTP_USERNAME}
         fromName: "Vaultwarden"
@@ -52,6 +52,10 @@ spec:
         enabled: true
         clientId: ${SECRET_VAULTWARDEN_CLIENTID}
         secretKey: ${SECRET_VAULTWARDEN_SECRETKEY}
+
+      admin:
+        enabled: true
+        token: ${SECRET_VAULTWARDEN_SECRETKEY}
 
     ingress:
       enabled: true
