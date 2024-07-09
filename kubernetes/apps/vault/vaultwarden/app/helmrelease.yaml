@@ -33,14 +33,14 @@ spec:
 
     vaultwarden:
       domain: https://vault.${SECRET_DOMAIN}
-      allowSignups: false
+      allowSignups: true
       showPasswordHint: false
       enableWebsockets: true
       verifySignup: true
       allowInvitation: false
 
       smtp:
-        enabled: true
+        enabled: false
         host: ${SECRET_SMTP_SERVER}
         from: ${SECRET_SMTP_USERNAME}
         fromName: "Vaultwarden"
