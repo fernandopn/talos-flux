@@ -42,7 +42,7 @@ spec:
       smtp:
         enabled: true
         host: ${SECRET_SMTP_SERVER}
-        from: ${SECRET_SMTP_USERNAME}
+        from: ${SECRET_SMTP_FROM}
         fromName: "Vaultwarden"
         port: ${SECRET_SMTP_PORT}
         user: ${SECRET_SMTP_USERNAME}
