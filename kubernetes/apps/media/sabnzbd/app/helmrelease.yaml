@@ -62,7 +62,7 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: *puid
+        runAsUser: &puid 568
         runAsGroup: &pgid 568
         fsGroup: *pgid
         fsGroupChangePolicy: OnRootMismatch
