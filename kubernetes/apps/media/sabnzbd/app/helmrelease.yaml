@@ -41,7 +41,6 @@ spec:
                 sabnzbd.default.svc,
                 sabnzbd.default.svc.cluster,
                 sabnzbd.default.svc.cluster.local,
-                sabnzbd.home.${SECRET_DOMAIN},
                 sabnzbd.${SECRET_DOMAIN}
             probes:
               liveness: &probes
@@ -91,7 +90,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
-          - host: "sabnzbd.home.${SECRET_DOMAIN}"
+          - host: "sabnzbd.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
