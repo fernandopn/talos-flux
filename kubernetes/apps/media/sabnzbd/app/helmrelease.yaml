@@ -97,15 +97,16 @@ spec:
                   identifier: app
                   port: http
 
-    # persistence:
+    persistence:
+      tmp:
+        type: emptyDir
     #   config:
     #     existingClaim: sabnzbd
     #   logs:
     #     type: emptyDir
     #     globalMounts:
     #       - path: /config/logs
-    #   tmp:
-    #     type: emptyDir
+
     #   media:
     #     type: nfs
     #     server: expanse.internal
