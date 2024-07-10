@@ -100,7 +100,8 @@ spec:
     persistence:
       tmp:
         type: emptyDir
-    #   config:
+      config:
+        type: emptyDir
     #     existingClaim: sabnzbd
     #   logs:
     #     type: emptyDir
