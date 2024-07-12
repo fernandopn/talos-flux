@@ -109,4 +109,3 @@ spec:
       downloads:
         enabled: true
         existingClaim: download
-        mountPath: /downloads
