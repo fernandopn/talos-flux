@@ -75,7 +75,7 @@ spec:
         runAsGroup: 568
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [10000]
+        supplementalGroups: [1026, 100] # 1026 - NFS Owner / 100 - NFS Group
         seccompProfile: { type: RuntimeDefault }
 
     service:
