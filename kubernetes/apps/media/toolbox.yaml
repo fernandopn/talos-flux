@@ -7,7 +7,7 @@ spec:
   volumes:
   - name: data
     persistentVolumeClaim:
-        claimName: radarr
+        claimName: sonarr
   containers:
   - name: busybox
     image: busybox:1.28
