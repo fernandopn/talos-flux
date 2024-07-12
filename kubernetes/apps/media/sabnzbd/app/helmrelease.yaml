@@ -10,6 +10,7 @@ spec:
       chart: app-template
       version: 3.2.1
       sourceRef:
+        # https://bjw-s.github.io/helm-charts/docs/app-template/
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
