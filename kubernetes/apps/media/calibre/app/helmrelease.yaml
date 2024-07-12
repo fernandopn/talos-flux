@@ -95,6 +95,8 @@ spec:
         type: emptyDir
       logs:
         type: emptyDir
+      cache:
+        type: emptyDir
       config:
         enabled: true
         existingClaim: calibre
