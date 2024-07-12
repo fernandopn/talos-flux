@@ -105,6 +105,8 @@ spec:
       logs:
         type: emptyDir
       config:
+        enabled: true
         existingClaim: sabnzbd
       downloads:
+        enabled: true
         existingClaim: download
