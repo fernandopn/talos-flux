@@ -42,6 +42,7 @@ spec:
                 sabnzbd.default.svc.cluster,
                 sabnzbd.default.svc.cluster.local,
                 sabnzbd.${SECRET_DOMAIN}
+
             probes:
               liveness: &probes
                 enabled: true
@@ -100,18 +101,12 @@ spec:
     persistence:
       tmp:
         type: emptyDir
-      config:
+      logs:
         type: emptyDir
-    #     existingClaim: sabnzbd
-    #   logs:
-    #     type: emptyDir
-    #     globalMounts:
-    #       - path: /config/logs
-
-    #   media:
-    #     type: nfs
-    #     server: expanse.internal
-    #     path: /eros/Media
-    #     globalMounts:
-    #       - path: /media/Downloads/sabnzbd
-    #         subPath: Downloads/sabnzbd
+      config:
+        enabled: true
+        existingClaim: sabnzbd
+      downloads:
+        enabled: true
+        existingClaim: download
+        mountPath: /downloads
