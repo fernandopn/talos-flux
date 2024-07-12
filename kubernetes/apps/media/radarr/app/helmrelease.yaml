@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     controllers:
-      sabnzbd:
+      radarr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -80,7 +80,7 @@ spec:
 
     service:
       app:
-        controller: sabnzbd
+        controller: radarr
         ports:
           http:
             port: *port

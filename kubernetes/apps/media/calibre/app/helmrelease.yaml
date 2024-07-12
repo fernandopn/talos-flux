@@ -72,7 +72,7 @@ spec:
 
     service:
       app:
-        controller: sabnzbd
+        controller: calibre
         ports:
           http:
             port: &port 8083
