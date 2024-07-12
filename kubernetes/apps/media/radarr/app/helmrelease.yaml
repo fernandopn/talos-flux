@@ -104,10 +104,11 @@ spec:
       logs:
         type: emptyDir
       config:
+        enabled: true
         existingClaim: radarr
       downloads:
+        enabled: true
         existingClaim: download
-        mountPath: /downloads
       movies:
+        enabled: true      
         existingClaim: movie
-        mountPath: /movies
