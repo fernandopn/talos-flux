@@ -103,4 +103,4 @@ spec:
         existingClaim: calibre
       books:
         enabled: true
-        existingClaim: books
+        existingClaim: book
