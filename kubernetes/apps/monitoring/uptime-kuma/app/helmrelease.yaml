@@ -30,7 +30,7 @@ spec:
         containers:
           app:
             image:
-              repository: elestio/uptime-kuma
+              repository: louislam/uptime-kuma
               tag: 1.23.13
             env:
               TZ: "${TIMEZONE}"
