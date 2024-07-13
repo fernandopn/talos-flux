@@ -91,5 +91,5 @@ spec:
       data:
         enabled: true
         existingClaim: uptime-kuma
-        
-        mountPath: /app/data
+        globalMounts:
+          - path: /app/data
