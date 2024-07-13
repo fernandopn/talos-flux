@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     controllers:
-      calibre:
+      uptime-kuma:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
