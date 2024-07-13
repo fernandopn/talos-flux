@@ -46,10 +46,10 @@ spec:
                   failureThreshold: 30
                   periodSeconds: 5
 
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   readOnlyRootFilesystem: true
+            #   capabilities: { drop: ["ALL"] }
 
             resources:
               requests:
@@ -58,15 +58,15 @@ spec:
               limits:
                 memory: 470M
 
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [1026, 100] # 1026 - NFS Owner / 100 - NFS Group
-        seccompProfile: { type: RuntimeDefault }
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 568
+    #     runAsGroup: 568
+    #     fsGroup: 568
+    #     fsGroupChangePolicy: OnRootMismatch
+    #     supplementalGroups: [1026, 100] # 1026 - NFS Owner / 100 - NFS Group
+    #     seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: uptime-kuma
