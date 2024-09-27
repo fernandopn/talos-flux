@@ -8,3 +8,4 @@ resources:
   - ./sabnzbd/ks.yaml
   - ./shared/ks.yaml
   - ./sonarr/ks.yaml
+  - ./nextcloud/ks.yaml
