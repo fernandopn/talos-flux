@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: louislam/uptime-kuma
-              tag: 1.23.13
+              tag: 1.23.15
             env:
               TZ: "${TIMEZONE}"
 
