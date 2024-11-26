@@ -26,9 +26,7 @@ nodes:
   - hostname: "thor"
     ipAddress: "10.1.0.210"
     installDisk: "/dev/nvme0n1"
-    machineSpec:
-      secureboot: true
-    talosImageURL: factory.talos.dev/installer-secureboot/2a00b3ddd1c1ee7e0a061de790271304fb3951e8853b292e408d54aa18ec0410
+    talosImageURL: factory.talos.dev/installer/2a00b3ddd1c1ee7e0a061de790271304fb3951e8853b292e408d54aa18ec0410
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
